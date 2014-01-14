@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>Machine.Specifications.Development.Specs</id>
+    <version>0.0.0</version>
+    <title>Machine.Specifications.Development.Specs</title>
+    <authors>Machine.Specifications team</authors>
+    <owners>Machine.Specifications team</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
+    <projectUrl>https://github.com/machine/machine.specifications.development</projectUrl>
+    <iconUrl>https://github.com/machine/machine.specifications/blob/master/Misc/Machine.Specifications.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Used for build infrastructure.</description>
+    <copyright>Copyright 2012-2014</copyright>
+    <tags>Machine.Specifications build</tags>
+	<releaseNotes></releaseNotes>
+    <dependencies>
+        <dependency id="Machine.Specifications.Development" />
+        <!--<dependency id="Machine.Specifications" version="0.6.1" />--> <!-- change path in .targets when changing version, too -->
+	</dependencies>	
+  </metadata>
+</package>
