@@ -2,7 +2,7 @@
 <package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>Appccelerate.Development.Facts</id>
-    <version>0.0.3</version>
+    <version>$version$</version>
     <title>Appccelerate.Development.Facts</title>
     <authors>Appccelerate team</authors>
     <owners>Appccelerate team</owners>
