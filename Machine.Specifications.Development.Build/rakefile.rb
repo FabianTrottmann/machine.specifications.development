@@ -32,9 +32,6 @@ task :configure do
   configatron.solution = Configatron::Dynamic.new do
     FileList.new("*.sln").to_a[0]
   end
-  configatron.nuget.key = Configatron::Dynamic.new do
-    next File.read('NUGET_KEY') if File.readable?('NUGET_KEY')
-  end
   configatron.project = Configatron::Delayed.new do
     "#{configatron.solution.gsub(".sln", "")}#{'-Signed' if configatron.sign_assembly}"
   end
@@ -110,7 +107,7 @@ end
 
 desc "Run all nunit tests"
 nunit :tests => [:rebuild] do |cmd|
-  cmd.command = "Source/packages/NUnit.Runners/tools/nunit-console-x86.exe"
+  cmd.command = "packages/NUnit.Runners.2.6.3/tools/nunit-console-x86.exe"
   cmd.assemblies = FileList.new("#{configatron.out_dir}/Tests/*.Tests.dll").to_a
   #cmd.results_path = "Specs/test-report.xml"
   #cmd.no_logo
@@ -124,7 +121,7 @@ end
 task :templates do
   #Write teamcity build number
   puts "##teamcity[buildNumber '#{configatron.version.short}']"
-  
+
   #Prepare templates
   FileList.new('**/*.template').each do |template|
     QuickTemplate.new(template).exec(configatron)
@@ -133,24 +130,13 @@ end
 
 desc "Package build artifacts as a NuGet package and a symbols package"
 task :createpackage => [ :default ] do
-	opts = %W(
-	  Tools/Ripple/Ripple.exe create-packages --version #{configatron.version.full} --symbols --verbose --destination #{configatron.distribution.dir}
-	  )
+	FileList.new('**/*.nuspec').each do |nuspec|
+		opts = %W(
+			nuget pack #{nuspec} -Symbols -OutputDirectory #{configatron.distribution.dir}
+		)
 
-  sh(*opts) do |ok, status|
-	ok or fail "Command failed with status (#{status.exitstatus})"
-  end
-end
-
-desc "Publishes the NuGet package"
-task :publishpackage => [ :default ] do
-  raise "NuGet access key is missing, cannot publish" if configatron.nuget.key.nil?
-
-  opts = %W(
-	Tools/Ripple/Ripple.exe publish #{configatron.version.full} #{configatron.nuget.key} --symbols --artifacts #{configatron.distribution.dir} --verbose         
-  )
-
-  sh(*opts) do |ok, status|
-	ok or fail "Command failed with status (#{status.exitstatus})"
-  end
+		sh(*opts) do |ok, status|
+			ok or fail "Command failed with status (#{status.exitstatus})"
+		end
+	end
 end
