@@ -4,27 +4,6 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">$(MSBuildProjectDirectory)..\</SolutionDir>
   </PropertyGroup>
   
-  <!-- Debug -->
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath Condition=" '$(OutputPath)'=='' ">..\..\Build\Debug\</OutputPath>
-    <DefineConstants Condition=" '$(DefineConstants)'=='' ">DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  
-  <!-- Release -->
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath Condition=" '$(OutputPath)'=='' ">..\..\Build\Release\</OutputPath>
-    <DefineConstants Condition=" '$(DefineConstants)'=='' ">TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-
   <!-- StyleCop -->
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
