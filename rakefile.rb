@@ -13,7 +13,7 @@ end
 
 task :default => [ :clean, :createpackages ]
 
-nugetfolder = '../nugets'
+nugetfolder = './Distribution'
 
 desc "Prepares the working directory for a new build"
 task :clean do
@@ -29,7 +29,7 @@ end
 desc "Package build artifacts as a NuGet package"
 task :createpackages => [ :clean ] do
 	# We blindly assume that we are in a directory where the root contains all machine repos
-	Dir.glob("../**/*.nuspec") do |nuspec|
-		sh "nuget pack #{nuspec} -Version 0.0.0 -OutputDirectory #{nugetfolder}"
+	FileList.new('**/*.nuspec').each do |nuspec|
+		sh "nuget pack #{nuspec} -OutputDirectory #{nugetfolder}"
 	end
 end
