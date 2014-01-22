@@ -29,7 +29,7 @@ task :configure do
     :mspec_options => (["--teamcity"] if ENV.include?('TEAMCITY_PROJECT_NAME')) || []
   }
   
-  configatron.solution = Configatron::Dynamic.new do
+  configatron.solution = Configatron::Delayed.new do
     FileList.new("*.sln").to_a[0]
   end
   configatron.project = Configatron::Delayed.new do
@@ -39,10 +39,10 @@ task :configure do
     "Distribution/"
   end
   configatron.version.full = Configatron::Delayed.new do
-    open("|Tools/GitFlowVersion/GitFlowVersion.exe").read().scan(/NugetVersion":"(.*)"/)[0][0][0,20]
+    `gitflowversion`.scan(/NugetVersion":"(.*)"/)[0][0][0,20]
   end
   configatron.version.short = Configatron::Delayed.new do
-    open("|Tools/GitFlowVersion/GitFlowVersion.exe").read().scan(/ShortVersion":"(.*)"/)[0][0]
+    `gitflowversion`.scan(/ShortVersion":"(.*)"/)[0][0]
   end  
 
   configatron.configure_from_hash build_config
