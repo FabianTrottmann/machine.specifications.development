@@ -30,6 +30,6 @@ desc "Package build artifacts as a NuGet package"
 task :createpackages => [ :clean ] do
 	# We blindly assume that we are in a directory where the root contains all machine repos
 	FileList.new('**/*.nuspec').each do |nuspec|
-		sh "nuget pack #{nuspec} -OutputDirectory #{nugetfolder}"
+		sh "nuget pack #{nuspec} -Version 0.2.3 -OutputDirectory #{nugetfolder}"
 	end
 end
