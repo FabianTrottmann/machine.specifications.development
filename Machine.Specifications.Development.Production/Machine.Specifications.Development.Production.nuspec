@@ -2,8 +2,8 @@
 <package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>Machine.Specifications.Development.Production</id>
-    <version>0.2.0</version>
-    <title>Machine.Specifications.Production</title>
+    <version>0.2.1</version>
+    <title>Machine.Specifications.Development.Production</title>
     <authors>Machine.Specifications team</authors>
     <owners>Machine.Specifications team</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
